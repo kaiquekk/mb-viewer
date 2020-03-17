@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ImposterService } from './imposter.service';
 
 @Component({
@@ -6,11 +6,19 @@ import { ImposterService } from './imposter.service';
   templateUrl: './imposter-list.component.html',
   styleUrls: ['./imposter-list.component.sass']
 })
-export class ImposterListComponent implements OnInit {    
+export class ImposterListComponent {   
   imposters: string[] = [];
   _port = '';
   errorMessage = '';
+  showPostForm = false;
 
+  get port(): string {
+    return this._port;
+  }
+
+  set port(value: string) {
+    this._port = value;
+  }
   constructor(private imposterService: ImposterService) { }
 
   searchImposters(port: string): void {
@@ -22,7 +30,10 @@ export class ImposterListComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  togglePostForm(): void {
+    if (this._port) {
+      this.showPostForm = !this.showPostForm;
+    }
   }
 
 }

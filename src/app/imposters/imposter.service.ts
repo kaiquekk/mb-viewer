@@ -19,10 +19,10 @@ export class ImposterService {
       );
   }
 
-//   getProduct(id: number): Observable<IProduct | undefined> {
-//     return this.getProducts()
+//   getImposter(port: number): Observable<Object | undefined> {
+//     return this.getImposters()
 //       .pipe(
-//         map((products: IProduct[]) => products.find(p => p.productId === id))
+//         map((imposters: Object) => imposters.find(p => p.productId === id))
 //       );
 //   }
 

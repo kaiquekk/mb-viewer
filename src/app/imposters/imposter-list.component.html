@@ -4,9 +4,9 @@
     </div>
     <div class='card-body'>
         <div class='port-search'>
-            Specificate the port where Mountebank is running:
-            <input type='text' [(ngModel)]='_port' />
-            <button class='btn' (click)='searchImposters(_port)'>
+            Specify the port where Mountebank is running:
+            <input type='text' [(ngModel)]='port' />
+            <button class='btn' (click)='searchImposters(port)'>
                 Show Imposters
             </button>
         </div>
@@ -19,10 +19,35 @@
             </thead>
             <tbody>
                 <tr *ngFor='let imposter of imposters'>
-                    <td>{{imposter.port}}</td>
+                    <td>
+                        <a [routerLink]="['/imposters', port, imposter.port]">
+                            {{imposter.port}}
+                        </a>
+                    </td>
                     <td>{{imposter.protocol}}</td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <a class='add-icon' title='add' (click)='togglePostForm()'></a>
+                </tr>
+            </tfoot>
         </table>
+        <div class='form' *ngIf='showPostForm && port'>
+            <div class='form-title'>
+                <a>Add a new imposter to port {{port}}</a>
+            </div>
+            <div class='form-fields'>                
+                <label>Imposter Port:</label>
+                <input type='text' /><br>
+                <label>Imposter Protocols:</label>
+                <input type='text' /><br>
+                <label>Imposter Predicates</label>
+                <textarea></textarea><br>
+                <label>Imposter Responses:</label>
+                <textarea></textarea><br>
+                <button class='btn'>Post</button>
+            </div>
+        </div>
     </div>
 </div>
