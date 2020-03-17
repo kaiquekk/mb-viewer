@@ -1,9 +1,18 @@
-<nav class='navbar navbar-expand navbar-light bg-light'>
-  <a class='navbar-brand'>{{pageTitle}}</a>
-  <ul class='nav nav-pills'>
-    <li><a class='nav-link'>Home</a></li>
-    <li><a class='nav-link'>Imposters</a></li>
-    <li><a class='nav-link'>Logs</a></li>
-    <li><a class='nav-link'>Config</a></li>
-  </ul>
+<nav class='navbar'>
+  <a class='navbar-title'>{{pageTitle}}</a>
+  <div class='navbar-list'>
+    <a class='nav-link' [routerLink]="['/welcome']">Home</a>
+    <a class='nav-link' [routerLink]="['/imposters']">Imposters</a>
+    <a class='nav-link' [routerLink]="['/logs']">Logs</a>
+    <a class='nav-link' [routerLink]="['/config']">Config</a>
+  </div>
 </nav>
+<div class='container'>
+  <router-outlet></router-outlet>
+</div>
+<div class='footer'>
+  <div class='footer-left'>
+    <img class='footer-logo' src='./assets/images/opus.png'>
+  </div>
+  <div class='footer-right'>2020</div>
+</div>

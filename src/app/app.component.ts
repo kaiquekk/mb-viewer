@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  pageTitle = 'Mountebank Viewer';
+  pageTitle: string = 'Mountebank Viewer';
 }

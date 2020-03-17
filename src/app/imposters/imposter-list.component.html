@@ -1,0 +1,28 @@
+<div class='card'>
+    <div class='card-header'>
+        Imposters Viewer
+    </div>
+    <div class='card-body'>
+        <div class='port-search'>
+            Specificate the port where Mountebank is running:
+            <input type='text' [(ngModel)]='_port' />
+            <button class='btn' (click)='searchImposters(_port)'>
+                Show Imposters
+            </button>
+        </div>
+        <table class='imposters-table'>
+            <thead>
+                <tr>
+                    <th>Imposter Port</th>
+                    <th>Imposter Protocol</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let imposter of imposters'>
+                    <td>{{imposter.port}}</td>
+                    <td>{{imposter.protocol}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
