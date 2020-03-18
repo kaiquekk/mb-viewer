@@ -39,14 +39,12 @@
             </div>
             <div class='form-fields'>                
                 <label>Imposter Port:</label>
-                <input type='text' /><br>
+                <input type='text' [(ngModel)]='newImposter.port' /><br>
                 <label>Imposter Protocols:</label>
-                <input type='text' /><br>
-                <label>Imposter Predicates</label>
-                <textarea></textarea><br>
-                <label>Imposter Responses:</label>
-                <textarea></textarea><br>
-                <button class='btn'>Post</button>
+                <input type='text' [(ngModel)]='newImposter.protocol' /><br>
+                <label>Imposter Stubs</label>
+                <textarea #stubs cols='40' rows='10' (change)='newImposter.stubs[0] = parse(stubs.value)'></textarea><br>
+                <button class='btn' (click)='postImposter()'>Post</button>
             </div>
         </div>
     </div>

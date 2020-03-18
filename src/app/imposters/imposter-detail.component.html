@@ -1,20 +1,67 @@
-<div class='card' *ngIf='imposter'>
+<div class='card' *ngIf='imposter && !edit'>
     <div class='card-header'>
-        Details of Imposter {{imposter}}
+        Details of Imposter {{ port }}
     </div>
     <div class='card-body'>
-        <div class='row'>            
-            <div>Port:</div>
-            <div>{{imposter}}</div>
+        <div class='row'>
+            Port: {{ imposter.port }}
         </div>
         <div class='row'>
-            <div>Protocol:</div>
-            <div>{{imposter}}</div>
+            Protocol: {{ imposter.protocol }}
+        </div>
+        <div class='row'>
+            Number of Requests: {{ imposter.numberOfRequests }}
+        </div>
+        <div class='row'>
+            Stubs: {{ imposter.stubs | json }}
         </div>
     </div>
     <div class='card-footer'>
+        <button class='btn' (click)='toggleEdit()'>
+            Edit Stubs
+        </button>
+        <button class='btn' (click)='deleteImposter()'>
+            Delete this Imposter
+        </button>
         <button class='btn' (click)='onBack()'>
             Return
         </button>
+    </div>
+</div>
+<div class='card' *ngIf='edit'>
+    <div class='card-header'>
+        Edit Imposter
+    </div>
+    <div class='card-body'>        
+        <div class='row'>
+            Port:<label>{{ imposterCopy.port }}</label>
+        </div>
+        <div class='row'>
+            Protocol:<label>{{ imposterCopy.protocol }}</label>
+        </div>
+        <div class='row' *ngIf='imposterCopy.name'>
+            <label>{{ imposterCopy.name }}</label>
+        </div>
+        <div class='row'>
+            Number of Requests:<label>{{ imposterCopy.numberOfRequests }}</label>            
+        </div>      
+        <div class='row'>
+            Stubs:
+            <div class='stub' *ngFor='let stub of imposterCopy.stubs'>
+                <div class='stubItem'>
+                    <label>Response:</label>
+                    <textarea #response cols='100' rows='15' (change)='stub.responses = parse(response.value)'>{{ stub.responses | json }}</textarea>
+                </div>
+                <div class='stubItem'> 
+                    <label>Predicate:</label>
+                    <textarea #predicate cols='100' rows='15' (change)='stub.predicates = parse(predicate.value)'>{{ stub.predicates | json }}</textarea>
+                </div>
+                <hr class='separator' />
+            </div>
+        </div>
+    </div>
+    <div class='card-footer'>
+        <button class='btn' (click)='putStubs()'>Submit</button>
+        <button class='btn' (click)='cancelEdit()'>Cancel</button>
     </div>
 </div>

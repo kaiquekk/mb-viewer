@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { ImposterService } from './imposter.service';
+import { IImposter } from './imposter';
 
 @Component({
   selector: 'mbv-imposter-list',
@@ -11,6 +12,11 @@ export class ImposterListComponent {
   _port = '';
   errorMessage = '';
   showPostForm = false;
+  newImposter: IImposter = {
+    port: 0,
+    protocol: '',
+    stubs: []
+  }; 
 
   get port(): string {
     return this._port;
@@ -19,13 +25,12 @@ export class ImposterListComponent {
   set port(value: string) {
     this._port = value;
   }
+
   constructor(private imposterService: ImposterService) { }
 
   searchImposters(port: string): void {
     this.imposterService.getImposters(+port).subscribe({
-      next: imposters => {
-        this.imposters = imposters['imposters'];
-      },
+      next: imposters => this.imposters = imposters['imposters'],
       error: err => this.errorMessage = err
     });
   }
@@ -34,6 +39,17 @@ export class ImposterListComponent {
     if (this._port) {
       this.showPostForm = !this.showPostForm;
     }
+  }
+
+  parse(value: string): any {
+    return JSON.parse(value);
+  }
+
+  postImposter(): void {
+    this.imposterService.postImposter(+this.port, this.newImposter).subscribe({
+      next: msg => this.togglePostForm(),
+      error: err => this.errorMessage = err
+    })
   }
 
 }
