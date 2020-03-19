@@ -1,10 +1,14 @@
-.add-icon
-    background-color: green
+@import '../../styles.sass'
 
-.add-icon::before
-    content: "+"
-    font-family: FontAwesome
-    font-weight: bold
-    font-style: normal
-    color: white
-    
+.card-body
+    align-self: center
+
+.imposters-table
+    display: table
+    border-collapse: collapse
+    border: .2em solid #888886
+    > tfoot
+        text-align: right
+
+.imposter-table > th, tr
+    border: .05em solid #888886

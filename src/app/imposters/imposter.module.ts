@@ -3,12 +3,14 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ImposterListComponent } from './imposter-list.component';
 import { ImposterDetailComponent } from './imposter-detail.component';
+import { PrettyPrintPipe } from '../shared/pretty-print.pipe';
 
 
 @NgModule({
   declarations: [
     ImposterListComponent, 
-    ImposterDetailComponent
+    ImposterDetailComponent,
+    PrettyPrintPipe
   ],
   imports: [
     RouterModule.forChild([

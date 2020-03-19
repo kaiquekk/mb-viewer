@@ -1,4 +1,4 @@
-$base-color: #aa920c
+@import "../styles.sass"
 
 .navbar
     padding: 1em
@@ -6,7 +6,7 @@ $base-color: #aa920c
     display: flex
     flex-direction: row
     justify-content: space-between
-    background-color: $base-color
+    background-color: $main-color
     > .navbar-title
         margin-left: 1em
         font-weight: bold
@@ -17,11 +17,11 @@ $base-color: #aa920c
         flex-direction: row
         justify-content: space-between
         flex: 1
-.container
+.main-container
     min-height: 100vh
 .footer
     display: flex
-    background-color: $base-color
+    background-color: $main-color
     justify-content: space-between
     align-items: center
     margin-top: auto

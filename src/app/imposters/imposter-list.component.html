@@ -1,51 +1,63 @@
-<div class='card'>
+<div class='card' *ngIf='!showPostForm'>
     <div class='card-header'>
-        Imposters Viewer
+        <h1>Imposters Viewer</h1>
     </div>
     <div class='card-body'>
         <div class='port-search'>
-            Specify the port where Mountebank is running:
+            <a>Specify the port where Mountebank is running:</a>
             <input type='text' [(ngModel)]='port' />
             <button class='btn' (click)='searchImposters(port)'>
                 Show Imposters
             </button>
         </div>
-        <table class='imposters-table'>
+        <table class='imposters-table' *ngIf='imposters'>
             <thead>
                 <tr>
-                    <th>Imposter Port</th>
-                    <th>Imposter Protocol</th>
+                    <th>Port</th>
+                    <th>Protocol</th>
                 </tr>
-            </thead>
+            </thead>      
             <tbody>
                 <tr *ngFor='let imposter of imposters'>
                     <td>
                         <a [routerLink]="['/imposters', port, imposter.port]">
-                            {{imposter.port}}
+                            {{ imposter.port }}
                         </a>
                     </td>
-                    <td>{{imposter.protocol}}</td>
+                    <td>{{ imposter.protocol }}</td>
                 </tr>
-            </tbody>
+            </tbody>      
             <tfoot>
                 <tr>
-                    <a class='add-icon' title='add' (click)='togglePostForm()'></a>
-                </tr>
+                    <td colspan='2'>
+                        <button class='btn' (click)='togglePostForm()'>Add Imposter</button>
+                    </td>
+                  </tr>
             </tfoot>
         </table>
-        <div class='form' *ngIf='showPostForm && port'>
-            <div class='form-title'>
-                <a>Add a new imposter to port {{port}}</a>
-            </div>
-            <div class='form-fields'>                
-                <label>Imposter Port:</label>
-                <input type='text' [(ngModel)]='newImposter.port' /><br>
-                <label>Imposter Protocols:</label>
-                <input type='text' [(ngModel)]='newImposter.protocol' /><br>
-                <label>Imposter Stubs</label>
-                <textarea #stubs cols='40' rows='10' (change)='newImposter.stubs[0] = parse(stubs.value)'></textarea><br>
-                <button class='btn' (click)='postImposter()'>Post</button>
-            </div>
-        </div>
+            
     </div>
 </div>
+<div class='card' *ngIf='showPostForm && port'>
+    <div class='card-header'>
+        <h3>Add a new imposter to port {{ port }}</h3>
+    </div>
+    <div class='card-body'>
+        <div class='row'>
+            <label>Imposter Port:</label>                    
+            <input type='text' [(ngModel)]='newImposter.port' />
+        </div>
+        <div class='row'>
+            <label>Imposter Protcols:</label>
+            <input type='text' [(ngModel)]='newImposter.protocol' />
+        </div>
+        <div class='row'>
+            <label>Imposter Stubs:</label>
+            <textarea #stubs cols='80vw' rows='10' (change)='newImposter.stubs[0] = parse(stubs.value)'></textarea> 
+        </div>
+    </div>
+    <div class='card-footer'>
+        <button class='btn' (click)='postImposter()'>Post</button>                
+        <button class='btn' (click)='togglePostForm()'>Cancel</button>
+    </div>
+</div>    

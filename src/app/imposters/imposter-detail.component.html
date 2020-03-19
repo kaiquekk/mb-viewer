@@ -1,6 +1,6 @@
 <div class='card' *ngIf='imposter && !edit && !add'>
     <div class='card-header'>
-        Details of Imposter {{ port }}
+        <h1>Details of Imposter at Port {{ port }}</h1>
     </div>
     <div class='card-body'>
         <div class='row'>
@@ -15,7 +15,7 @@
         <div class='stub-container'>
             <div class='row'>Stubs:</div>
             <div class='stub-card' *ngFor='let s of imposter.stubs; let i = index'>
-                <a>{{ s | json }}</a>
+                <pre>{{ s | json }}</pre>
                 <button class='btn' (click)='deleteStub(i)'>Delete this Stub</button>
             </div>
         </div>
@@ -57,11 +57,11 @@
             <div class='stub' *ngFor='let stub of imposterCopy.stubs'>
                 <div class='stubItem'>
                     <label>Response:</label>
-                    <textarea #response cols='100' rows='15' (change)='stub.responses = parse(response.value)'>{{ stub.responses | json }}</textarea>
+                    <textarea #response rows='15' (change)='stub.responses = parse(response.value)'>{{ stub.responses | json }}</textarea>
                 </div>
                 <div class='stubItem'> 
                     <label>Predicate:</label>
-                    <textarea #predicate cols='100' rows='15' (change)='stub.predicates = parse(predicate.value)'>{{ stub.predicates | json }}</textarea>
+                    <textarea #predicate rows='15' (change)='stub.predicates = parse(predicate.value)'>{{ stub.predicates | json }}</textarea>
                 </div>
                 <hr class='separator' />
             </div>
@@ -83,11 +83,11 @@
         </div>
         <div class='row'>
             <label>Response:</label>
-            <textarea #resp cols='100' rows='15'></textarea>
+            <textarea #resp rows='15'></textarea>
         </div>
         <div class='row'>
             <label>Predicate:</label>
-            <textarea #pred cols='100' rows='15'></textarea>
+            <textarea #pred rows='15'></textarea>
         </div>
     </div>
     <div class='card-footer'>

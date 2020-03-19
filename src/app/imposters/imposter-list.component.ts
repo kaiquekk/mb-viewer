@@ -8,7 +8,7 @@ import { IImposter } from './imposter';
   styleUrls: ['./imposter-list.component.sass']
 })
 export class ImposterListComponent {   
-  imposters: string[] = [];
+  imposters: string[];
   _port = '';
   errorMessage = '';
   showPostForm = false;
