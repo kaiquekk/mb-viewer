@@ -1,4 +1,4 @@
-<div class='card' *ngIf='imposter && !edit'>
+<div class='card' *ngIf='imposter && !edit && !add'>
     <div class='card-header'>
         Details of Imposter {{ port }}
     </div>
@@ -12,11 +12,18 @@
         <div class='row'>
             Number of Requests: {{ imposter.numberOfRequests }}
         </div>
-        <div class='row'>
-            Stubs: {{ imposter.stubs | json }}
+        <div class='stub-container'>
+            <div class='row'>Stubs:</div>
+            <div class='stub-card' *ngFor='let s of imposter.stubs; let i = index'>
+                <a>{{ s | json }}</a>
+                <button class='btn' (click)='deleteStub(i)'>Delete this Stub</button>
+            </div>
         </div>
     </div>
     <div class='card-footer'>
+        <button class='btn' (click)='toggleAdd()'>
+            Add Stub
+        </button>
         <button class='btn' (click)='toggleEdit()'>
             Edit Stubs
         </button>
@@ -28,7 +35,7 @@
         </button>
     </div>
 </div>
-<div class='card' *ngIf='edit'>
+<div class='card' *ngIf='edit && !add'>
     <div class='card-header'>
         Edit Imposter
     </div>
@@ -63,5 +70,28 @@
     <div class='card-footer'>
         <button class='btn' (click)='putStubs()'>Submit</button>
         <button class='btn' (click)='cancelEdit()'>Cancel</button>
+    </div>
+</div>
+<div class='card' *ngIf='add && !edit'>
+    <div class='card-header'>
+        Add Stubs to the imposter
+    </div>
+    <div class='card-body'>
+        <div class='row'>
+            <label>Index:</label>
+            <input type='text' #index />
+        </div>
+        <div class='row'>
+            <label>Response:</label>
+            <textarea #resp cols='100' rows='15'></textarea>
+        </div>
+        <div class='row'>
+            <label>Predicate:</label>
+            <textarea #pred cols='100' rows='15'></textarea>
+        </div>
+    </div>
+    <div class='card-footer'>
+        <button class='btn' (click)='postStub(parse(resp.value), parse(pred.value), index.value)'>Submit</button>
+        <button class='btn' (click)='toggleAdd()'>Cancel</button>
     </div>
 </div>

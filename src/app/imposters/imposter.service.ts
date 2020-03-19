@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, ObservedValueOf } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 import { IImposter } from './imposter';
 import { IStub } from './stub';
@@ -39,6 +39,22 @@ export class ImposterService {
 
   putStubs(mbPort: number, port: number, stubs: Object): Observable<IImposter | undefined> {
     return this.http.put<IImposter>(`${this.url}${mbPort}/imposters/${port}/stubs`, stubs)
+      .pipe(
+        tap(data => JSON.stringify(data)),
+        catchError(this.handleError)
+      )
+  }
+
+  postStub(mbPort: number, port: number, stub: Object): Observable<IImposter | undefined> {
+    return this.http.post<IImposter>(`${this.url}${mbPort}/imposters/${port}/stubs`, stub)
+      .pipe(
+        tap(data => JSON.stringify(data)),
+        catchError(this.handleError)
+      )
+  }
+
+  deleteStub(mbPort: number, port: number, index: number): Observable<IImposter | undefined> {
+    return this.http.delete<IImposter>(`${this.url}${mbPort}/imposters/${port}/stubs/${index}`)
       .pipe(
         tap(data => JSON.stringify(data)),
         catchError(this.handleError)

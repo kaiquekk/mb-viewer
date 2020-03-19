@@ -14,6 +14,7 @@ export class ImposterDetailComponent implements OnInit {
   mbPort: number;
   port: number; 
   edit: boolean = false;
+  add: boolean = false;
   objectKeys = Object.keys;
   imposterCopy: IImposter;
 
@@ -58,7 +59,9 @@ export class ImposterDetailComponent implements OnInit {
   }
 
   parse(value: string): any {
-    return JSON.parse(value);
+    if (value) {
+      return JSON.parse(value);
+    }
   }
 
   cancelEdit(): void {
@@ -68,5 +71,41 @@ export class ImposterDetailComponent implements OnInit {
 
   toggleEdit(): void {
     this.edit = !this.edit;
+  }
+
+  toggleAdd(): void {
+    this.add = !this.add;
+  }
+
+  deleteStub(index: number) {
+    this.imposterService.deleteStub(this.mbPort, this.port, index).subscribe({
+      next: msg => {        
+        this.getImposter(this.mbPort, this.port);
+        this.imposterCopy = Object.assign({}, this.imposter);
+      },
+      error: err => this.errorMessage = err
+    })
+  }
+
+  postStub(resp: Object, pred?: Object, index?: number) {
+    const stub = {
+      stub:{
+        responses: [resp]
+      }
+    }
+    if (pred) {
+      stub.stub['predicates'] = [pred]
+    }
+    if (index) {
+      stub['index'] = +index
+    }
+    this.imposterService.postStub(this.mbPort, this.port, stub).subscribe({
+      next: msg => {        
+        this.toggleAdd()
+        this.getImposter(this.mbPort, this.port);
+        this.imposterCopy = Object.assign({}, this.imposter);
+      },
+      error: err => this.errorMessage = err      
+    })
   }
 }

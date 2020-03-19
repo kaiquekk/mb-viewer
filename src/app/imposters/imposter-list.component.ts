@@ -47,7 +47,10 @@ export class ImposterListComponent {
 
   postImposter(): void {
     this.imposterService.postImposter(+this.port, this.newImposter).subscribe({
-      next: msg => this.togglePostForm(),
+      next: msg => {
+        this.togglePostForm();
+        this.searchImposters(this.port)
+      },
       error: err => this.errorMessage = err
     })
   }
