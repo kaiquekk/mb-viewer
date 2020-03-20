@@ -37,34 +37,53 @@
 </div>
 <div class='card' *ngIf='edit && !add'>
     <div class='card-header'>
-        Edit Imposter
+        <h1>Edit Imposter</h1>
     </div>
     <div class='card-body'>        
         <div class='row'>
-            Port:<label>{{ imposterCopy.port }}</label>
+            <div class='row-label'>
+                <label>Port: <b>{{ imposterCopy.port }}</b></label>
+            </div>
         </div>
         <div class='row'>
-            Protocol:<label>{{ imposterCopy.protocol }}</label>
+            <div class='row-label'>
+                <label>Protocol: <b>{{ imposterCopy.protocol }}</b></label>
+            </div>
         </div>
         <div class='row' *ngIf='imposterCopy.name'>
-            <label>{{ imposterCopy.name }}</label>
+            <div class='row-label'>
+                <label>Name: <b>{{ imposterCopy.name }}</b></label>
+            </div>
         </div>
         <div class='row'>
-            Number of Requests:<label>{{ imposterCopy.numberOfRequests }}</label>            
+            <div class='row-label'>
+                <label>Number of Requests: <b>{{ imposterCopy.numberOfRequests }}</b></label>
+            </div>            
         </div>      
         <div class='row'>
-            Stubs:
-            <div class='stub' *ngFor='let stub of imposterCopy.stubs'>
-                <div class='stubItem'>
-                    <label>Response:</label>
-                    <textarea #response rows='15' (change)='stub.responses = parse(response.value)'>{{ stub.responses | json }}</textarea>
+            <div class='row-label'>
+                <label>Stubs:</label>
+            </div>
+            <div class='row-content' *ngFor='let stub of imposterCopy.stubs'>
+                <div class='row stub'>
+                    <div class='row-label'>
+                        <label>Response:</label>
+                    </div>
+                    <div class='row-content'>
+                        <textarea #response rows='15' (change)='stub.responses = parse(response.value)'>{{ stub.responses | json }}</textarea>
+                    </div>
                 </div>
-                <div class='stubItem'> 
-                    <label>Predicate:</label>
-                    <textarea #predicate rows='15' (change)='stub.predicates = parse(predicate.value)'>{{ stub.predicates | json }}</textarea>
-                </div>
+                <div class='row stub'>    
+                    <div class='row-label'> 
+                        <label>Predicate:</label>
+                    </div>
+                    <div class='row-content'>
+                        <textarea #predicate rows='15' (change)='stub.predicates = parse(predicate.value)'>{{ stub.predicates | json }}</textarea>
+                    </div>
+                </div>                
                 <hr class='separator' />
             </div>
+            
         </div>
     </div>
     <div class='card-footer'>
@@ -74,20 +93,32 @@
 </div>
 <div class='card' *ngIf='add && !edit'>
     <div class='card-header'>
-        Add Stubs to the imposter
+        <h1>Add Stubs to the imposter</h1>
     </div>
-    <div class='card-body'>
+    <div class='card-body stub'>
         <div class='row'>
-            <label>Index:</label>
-            <input type='text' #index />
+            <div class='row-label'>
+                <label>Index:</label>
+            </div>
+            <div class='row-content'>
+                <input type='text' colspan='10%' #index />
+            </div>
         </div>
         <div class='row'>
-            <label>Response:</label>
-            <textarea #resp rows='15'></textarea>
+            <div class='row-label'>
+                <label>Response:</label>
+            </div>
+            <div class='row-content'>
+                <textarea #resp rows='15'></textarea>
+            </div>
         </div>
         <div class='row'>
-            <label>Predicate:</label>
-            <textarea #pred rows='15'></textarea>
+            <div class='row-label'>
+                <label>Predicate:</label>
+            </div>
+            <div class='row-content'>
+                <textarea #pred rows='15'></textarea>
+            </div>
         </div>
     </div>
     <div class='card-footer'>

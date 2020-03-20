@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ConfigService } from './config.service';
 
 @Component({
-  selector: 'mbv-config',
   templateUrl: './config.component.html',
   styleUrls: ['./config.component.sass']
 })
-export class ConfigComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+export class ConfigComponent {
+  configs: Object;
+  showConfig: boolean = false;
+  port = '';
+  errorMessage: string = '';
+  
+  toggleConfig(): void {
+    this.showConfig = !this.showConfig;
   }
+  
+  constructor(private configService: ConfigService) { }
 
+  getConfig(port: string): void {
+    this.toggleConfig();
+    this.configService.getConfig(+port).subscribe({
+      next: config => this.configs = config,
+      error: err => this.errorMessage = err
+    });
+  }
 }

@@ -7,16 +7,35 @@
     flex-direction: row
     justify-content: space-between
     background-color: $main-color
+    > .navbar-img
+        flex: 1
+    > .navbar-menu
+        flex: 7
+        display: flex
+        flex-direction: column
+
+.navbar > .navbar-menu   
+    margin: 1em    
     > .navbar-title
-        margin-left: 1em
+        margin: 1em
         font-weight: bold
-        flex: 2
     > .navbar-list
-        margin-right: 1em
+        margin: 1em
         display: flex
         flex-direction: row
-        justify-content: space-between
-        flex: 1
+        justify-content: space-evenly
+
+.navbar > .navbar-menu > .navbar-list
+    > .nav-link
+        color: black
+        padding: .6em 1em .5em 1em
+        text-decoration: none
+    > .nav-link:hover
+        background-color: rgba(138,119,10,.5)
+    > .active
+        background-color: $main-color2
+        color: black
+
 .main-container
     min-height: 100vh
 .footer

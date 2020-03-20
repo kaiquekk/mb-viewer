@@ -1,10 +1,13 @@
 <nav class='navbar'>
-  <a class='navbar-title'>{{pageTitle}}</a>
-  <div class='navbar-list'>
-    <a class='nav-link' [routerLink]="['/welcome']">Home</a>
-    <a class='nav-link' [routerLink]="['/imposters']">Imposters</a>
-    <a class='nav-link' [routerLink]="['/logs']">Logs</a>
-    <a class='nav-link' [routerLink]="['/config']">Config</a>
+  <img class='navbar-img' src='assets/images/mountebank.png' />
+  <div class='navbar-menu'>
+    <h1 class='navbar-title'>{{pageTitle}}</h1>    
+    <div class='navbar-list'>
+      <a class='nav-link' [routerLink]="['/welcome']" [routerLinkActive]="'active'">Home</a>
+      <a class='nav-link' [routerLink]="['/imposters']" [routerLinkActive]="'active'">Imposters</a>
+      <a class='nav-link' [routerLink]="['/logs']" [routerLinkActive]="'active'">Logs</a>
+      <a class='nav-link' [routerLink]="['/config']" [routerLinkActive]="'active'">Config</a>
+    </div>
   </div>
 </nav>
 <div class='main-container'>

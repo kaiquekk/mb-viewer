@@ -44,16 +44,28 @@
     </div>
     <div class='card-body'>
         <div class='row'>
-            <label>Imposter Port:</label>                    
-            <input type='text' [(ngModel)]='newImposter.port' />
+            <span class='row-label'>                
+                <label>Imposter Port:</label>  
+            </span>                  
+            <span class='row-content'>
+                <input type='text' [(ngModel)]='newImposter.port' />
+            </span>
         </div>
         <div class='row'>
-            <label>Imposter Protcols:</label>
-            <input type='text' [(ngModel)]='newImposter.protocol' />
+            <div class='row-label'>
+                <label>Imposter Protcols:</label>
+            </div>
+            <div class='row-content'>
+                <input type='text' [(ngModel)]='newImposter.protocol' />
+            </div>
         </div>
         <div class='row'>
-            <label>Imposter Stubs:</label>
-            <textarea #stubs cols='80vw' rows='10' (change)='newImposter.stubs[0] = parse(stubs.value)'></textarea> 
+            <div class='row-label'>
+                <label>Imposter Stubs:</label>
+            </div>
+            <div class='row-content'>
+                <textarea #stubs cols='80vw' rows='10' (change)='newImposter.stubs[0] = parse(stubs.value)'></textarea> 
+            </div>
         </div>
     </div>
     <div class='card-footer'>

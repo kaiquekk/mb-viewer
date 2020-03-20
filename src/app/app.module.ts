@@ -7,6 +7,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { LogsComponent } from './logs/logs.component';
 import { ConfigComponent } from './config/config.component';
 import { ImposterModule } from './imposters/imposter.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ImposterModule } from './imposters/imposter.module';
       { path: '', redirectTo: 'welcome', pathMatch: 'full' },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ]),
-    ImposterModule
+    ImposterModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })

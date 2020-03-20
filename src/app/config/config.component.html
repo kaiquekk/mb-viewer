@@ -1,1 +1,15 @@
-<p>config works!</p>
+<div class='card'>
+    <div class='card-header'>
+        <h1>Mountebank Configurations</h1>
+    </div>
+    <div class='card-body'>
+        <div class='port-search'>
+            <a>Specify the port where Mountebank is running:</a>
+            <input type='text' [(ngModel)]='port' />
+            <button class='btn' (click)='getConfig(port)'>Show Configurations</button>
+        </div>
+        <div class='config-table' *ngIf='showConfig && port'>
+            <pre>{{ configs | json }}</pre>
+        </div>
+    </div>
+</div>
